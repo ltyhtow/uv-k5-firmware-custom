@@ -1,5 +1,6 @@
 #ifdef ENABLE_CHINESE
 
+#include <stddef.h>
 #include "chinese_font.h"
 
 // GBK code lookup table (sorted for binary search)
@@ -947,7 +948,7 @@ const uint8_t *CHINESE_GetGlyph(uint16_t gbk_code)
             high = mid - 1;
     }
 
-    return (void *)0; // not found
+    return NULL; // not found
 }
 
 #endif // ENABLE_CHINESE
