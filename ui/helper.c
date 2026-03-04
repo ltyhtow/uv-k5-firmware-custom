@@ -19,6 +19,9 @@
 #include "driver/st7565.h"
 #include "external/printf/printf.h"
 #include "font.h"
+#ifdef ENABLE_CHINESE
+    #include "chinese_font.h"
+#endif
 #include "ui/helper.h"
 #include "ui/inputbox.h"
 #include "misc.h"
@@ -82,7 +85,36 @@ void UI_PrintString(const char *pString, uint8_t Start, uint8_t End, uint8_t Lin
 {
     size_t i;
     size_t Length = strlen(pString);
+#ifdef ENABLE_CHINESE
+    unsigned int ofs;
 
+    if (End > Start)
+        Start += (((End - Start) - (Length * Width)) + 1) / 2;
+
+    ofs = (unsigned int)Start;
+    for (i = 0; i < Length; i++)
+    {
+        if (pString[i] > ' ' && pString[i] < 127)
+        {
+            const unsigned int index = pString[i] - ' ' - 1;
+            memcpy(gFrameBuffer[Line + 0] + ofs, &gFontBig[index][0], 7);
+            memcpy(gFrameBuffer[Line + 1] + ofs, &gFontBig[index][7], 7);
+            ofs += Width;
+        }
+        else if (IS_GBK_FIRST_BYTE((uint8_t)pString[i]) && i + 1 < Length)
+        {
+            uint16_t gbk_code = ((uint8_t)pString[i] << 8) | (uint8_t)pString[i + 1];
+            const uint8_t *glyph = CHINESE_GetGlyph(gbk_code);
+            if (glyph)
+            {
+                memcpy(gFrameBuffer[Line + 0] + ofs, glyph,                          CHINESE_FONT_CHAR_WIDTH);
+                memcpy(gFrameBuffer[Line + 1] + ofs, glyph + CHINESE_FONT_CHAR_WIDTH, CHINESE_FONT_CHAR_WIDTH);
+            }
+            i++;
+            ofs += CHINESE_FONT_CHAR_WIDTH;
+        }
+    }
+#else
     if (End > Start)
         Start += (((End - Start) - (Length * Width)) + 1) / 2;
 
@@ -96,6 +128,7 @@ void UI_PrintString(const char *pString, uint8_t Start, uint8_t End, uint8_t Lin
             memcpy(gFrameBuffer[Line + 1] + ofs, &gFontBig[index][7], 7);
         }
     }
+#endif
 }
 
 void UI_PrintStringSmall(const char *pString, uint8_t Start, uint8_t End, uint8_t Line, uint8_t char_width, const uint8_t *font)

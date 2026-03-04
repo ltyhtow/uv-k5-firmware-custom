@@ -69,6 +69,9 @@ ENABLE_FEAT_F4HWN_GMRS_FRS_MURS	?= 0
 ENABLE_FEAT_F4HWN_CA            ?= 1
 ENABLE_FEAT_F4HWN_DEBUG         ?= 0
 
+# ---- CHINESE LOCALIZATION ----
+ENABLE_CHINESE                  ?= 1
+
 # ---- DEBUGGING ----
 ENABLE_AM_FIX_SHOW_DATA         ?= 0
 ENABLE_AGC_SHOW_DATA            ?= 0
@@ -182,6 +185,9 @@ OBJS += bitmaps.o
 OBJS += board.o
 OBJS += dcs.o
 OBJS += font.o
+ifeq ($(ENABLE_CHINESE),1)
+	OBJS += chinese_font.o
+endif
 OBJS += frequencies.o
 OBJS += functions.o
 OBJS += helper/battery.o
@@ -440,6 +446,9 @@ ifeq ($(ENABLE_UART_RW_BK_REGS),1)
 endif
 ifeq ($(ENABLE_CUSTOM_MENU_LAYOUT),1)
 	CFLAGS  += -DENABLE_CUSTOM_MENU_LAYOUT
+endif
+ifeq ($(ENABLE_CHINESE),1)
+	CFLAGS  += -DENABLE_CHINESE
 endif
 ifeq ($(ENABLE_FEAT_F4HWN),1)
 	CFLAGS  += -DENABLE_FEAT_F4HWN
