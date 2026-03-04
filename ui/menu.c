@@ -1036,16 +1036,16 @@ void UI_DisplayMenu(void)
             if (!gIsInSubMenu || gInputBoxIndex == 0)
             {
                 sprintf(String, "%3d.%05u", gSubMenuSelection / 100000, abs(gSubMenuSelection) % 100000);
-                UI_PrintString(String, menu_item_x1, menu_item_x2, 1, 8);
+                UI_PrintString(String, menu_item_x1, menu_item_x2, 2, 8);
             }
             else
             {
                 const char * ascii = INPUTBOX_GetAscii();
                 sprintf(String, "%.3s.%.3s  ",ascii, ascii + 3);
-                UI_PrintString(String, menu_item_x1, menu_item_x2, 1, 8);
+                UI_PrintString(String, menu_item_x1, menu_item_x2, 2, 8);
             }
 
-            UI_PrintString("MHz",  menu_item_x1, menu_item_x2, 3, 8);
+            UI_PrintString("MHz",  menu_item_x1, menu_item_x2, 4, 8);
 
             already_printed = true;
             break;
@@ -1174,7 +1174,7 @@ void UI_DisplayMenu(void)
             const bool valid = RADIO_CheckValidChannel(gSubMenuSelection, false, 0);
 
             UI_GenerateChannelStringEx(String, valid, gSubMenuSelection);
-            UI_PrintString(String, menu_item_x1, menu_item_x2, 0, 8);
+            UI_PrintStringSmallNormal(String, 86, menu_item_x2, 6);
 
             if (valid && !gAskForConfirmation)
             {   // show the frequency so that the user knows the channels frequency
@@ -1194,7 +1194,7 @@ void UI_DisplayMenu(void)
             const bool valid = RADIO_CheckValidChannel(gSubMenuSelection, false, 0);
 
             UI_GenerateChannelStringEx(String, valid, gSubMenuSelection);
-            UI_PrintString(String, menu_item_x1, menu_item_x2, 0, 8);
+            UI_PrintStringSmallNormal(String, 86, menu_item_x2, 6);
 
             if (valid)
             {
@@ -1542,7 +1542,7 @@ void UI_DisplayMenu(void)
     {   // we now do multi-line text in a single string
 
         unsigned int y;
-        unsigned int lines = 1;
+        unsigned int lines = 2;
         unsigned int len   = strlen(String);
         bool         small = false;
 
@@ -1573,7 +1573,7 @@ void UI_DisplayMenu(void)
                 y = 2 - ((lines + 0) / 2);
             */
 
-            y = (small ? 3 : 2) - (lines / 2); 
+            y = (small ? 4 : 3) - (lines / 2); 
 
             // only for SysInf
             if(UI_MENU_GetCurrentMenuId() == MENU_VOL)
@@ -1583,13 +1583,13 @@ void UI_DisplayMenu(void)
                     BATTERY_VoltsToPercent(gBatteryVoltageAverage)
                 );
 
-                UI_PrintStringSmallNormal(edit, 54, 127, 1);
+                UI_PrintStringSmallNormal(edit, 0, 127, 2);
 
                 #ifdef ENABLE_FEAT_F4HWN
                     UI_PrintStringSmallNormal(Edition, 54, 127, 6);
                 #endif
 
-                y = 2;
+                y = 3;
             }
 
             // draw the text lines
@@ -1627,7 +1627,7 @@ void UI_DisplayMenu(void)
         }
 
         // channel number
-        UI_PrintString(pPrintStr, menu_item_x1, menu_item_x2, 0, 8);
+        UI_PrintStringSmallNormal(pPrintStr, 86, menu_item_x2, 6);
 
         SETTINGS_FetchChannelName(String, gSubMenuSelection);
         pPrintStr = String[0] ? String : "--";
