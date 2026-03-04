@@ -40,6 +40,148 @@
 #include "ui.h"
 
 
+#ifdef ENABLE_CHINESE
+const t_menu_item MenuList[] =
+{
+//   text,          menu ID
+    {"\xb2\xbd\xbd\xf8\xc6\xb5\xc2\xca",        MENU_STEP          },
+    {"\xb7\xa2\xc9\xe4\xb9\xa6\xc2\xca",       MENU_TXP           },
+    {"\xbd\xd3\xca\xd5\xca\xfd\xd7\xd6\xd1\xc7\xd2\xf4",       MENU_R_DCS         },
+    {"\xbd\xd3\xca\xd5\xc4\xa3\xc4\xe2\xd1\xc7\xd2\xf4",      MENU_R_CTCS        },
+    {"\xb7\xa2\xcb\xcd\xca\xfd\xd7\xd6\xd1\xc7\xd2\xf4",       MENU_T_DCS         },
+    {"\xb7\xa2\xcb\xcd\xc4\xa3\xc4\xe2\xd1\xc7\xd2\xf4",      MENU_T_CTCS        },
+    {"\xc6\xb5\xb2\xee\xb7\xbd\xcf\xf2",      MENU_SFT_D         },
+    {"\xc6\xb5\xb2\xee\xc6\xb5\xc2\xca",      MENU_OFFSET        },
+    {"\xbf\xed\xd5\xad\xb4\xf8",         MENU_W_N           },
+#ifndef ENABLE_FEAT_F4HWN
+    {"Scramb",      MENU_SCR           },
+#endif
+    {"\xd3\xf6\xc3\xa6\xbd\xfb\xb7\xa2",      MENU_BCL           },
+    {"\xd1\xb9\xc0\xa9",      MENU_COMPAND       },
+    {"\xb5\xf7\xd6\xc6\xc4\xa3\xca\xbd",        MENU_AM            },
+#ifdef ENABLE_FEAT_F4HWN
+    {"\xb7\xa2\xc9\xe4\xcb\xf8",      MENU_TX_LOCK       },
+#endif
+    {"\xc9\xa8\xc3\xe8\xc1\xd0\xb1\xed""1",      MENU_S_ADD1        },
+    {"\xc9\xa8\xc3\xe8\xc1\xd0\xb1\xed""2",      MENU_S_ADD2        },
+    {"\xc9\xa8\xc3\xe8\xc1\xd0\xb1\xed""3",      MENU_S_ADD3        },
+    {"\xb4\xa2\xb4\xe6\xd0\xc5\xb5\xc0",      MENU_MEM_CH        },
+    {"\xc9\xbe\xb3\xfd\xd0\xc5\xb5\xc0",      MENU_DEL_CH        },
+    {"\xd0\xc5\xb5\xc0\xc3\xfb\xb3\xc6",      MENU_MEM_NAME      },
+    {"\xd0\xc5\xb5\xc0\xc9\xa8\xc3\xe8\xc1\xd0\xb1\xed",       MENU_S_LIST        },
+    {"\xc9\xa8\xc3\xe8\xc1\xd0\xb1\xed""1",      MENU_SLIST1        },
+    {"\xc9\xa8\xc3\xe8\xc1\xd0\xb1\xed""2",      MENU_SLIST2        },
+    {"\xc9\xa8\xc3\xe8\xc1\xd0\xb1\xed""3",      MENU_SLIST3        },
+    {"\xcb\xd1\xcb\xf7\xbb\xd6\xb8\xb4\xc4\xa3\xca\xbd",      MENU_SC_REV        },
+#ifndef ENABLE_FEAT_F4HWN
+    #ifdef ENABLE_NOAA
+        {"NOAA-S",      MENU_NOAA_S    },
+    #endif
+#endif
+    {"\xb2\xe0\xbc\xfc""1\xb6\xcc\xb0\xb4",      MENU_F1SHRT        },
+    {"\xb2\xe0\xbc\xfc""1\xb3\xa4\xb0\xb4",      MENU_F1LONG        },
+    {"\xb2\xe0\xbc\xfc""2\xb6\xcc\xb0\xb4",      MENU_F2SHRT        },
+    {"\xb2\xe0\xbc\xfc""2\xb3\xa4\xb0\xb4",      MENU_F2LONG        },
+    {"MENU\xbc\xfc\xb3\xa4\xb0\xb4",      MENU_MLONG         },
+    {"\xd7\xd4\xb6\xaf\xcb\xf8\xbc\xfc",      MENU_AUTOLK        },
+    {"\xb7\xa2\xcb\xcd\xb3\xac\xca\xb1",      MENU_TOT           },
+    {"\xca\xa1\xb5\xe7\xc4\xa3\xca\xbd",      MENU_SAVE          },
+    {"\xb5\xe7\xc1\xbf\xcf\xd4\xca\xbe",      MENU_BAT_TXT       },
+    {"\xc2\xf3\xbf\xcb\xb7\xe7\xd4\xf6\xd2\xe6",         MENU_MIC           },
+    {"\xc2\xf3\xbf\xcb\xb7\xe7\xb5\xe7\xc6\xbd",      MENU_MIC_BAR       },
+    {"\xd0\xc5\xb5\xc0\xcf\xd4\xca\xbe\xc4\xa3\xca\xbd",      MENU_MDF           },
+    {"\xbf\xaa\xbb\xfa\xcf\xd4\xca\xbe",      MENU_PONMSG        },
+    {"\xd7\xd4\xb6\xaf\xb1\xb3\xb9\xe2",      MENU_ABR           },
+    {"\xd7\xee\xd0\xa1\xb1\xb3\xb9\xe2\xc1\xc1\xb6\xc8",       MENU_ABR_MIN       },
+    {"\xd7\xee\xb4\xf3\xb1\xb3\xb9\xe2\xc1\xc1\xb6\xc8",       MENU_ABR_MAX       },
+    {"\xb1\xb3\xb9\xe2\xb5\xe3\xc1\xc1\xb7\xbd\xca\xbd",      MENU_ABR_ON_TX_RX  },
+    {"\xbc\xfc\xd2\xf4",        MENU_BEEP          },
+#ifdef ENABLE_VOICE
+    {"Voice",       MENU_VOICE         },
+#endif
+    {"\xca\xd7\xce\xb2\xd2\xf4",       MENU_ROGER         },
+    {"\xce\xb2\xd2\xf4\xcf\xfb\xb3\xfd",         MENU_STE           },
+    {"\xb9\xfd\xd6\xd0\xbc\xcc\xce\xb2\xd2\xf4\xcf\xfb\xb3\xfd",      MENU_RP_STE        },
+    {"\xb0\xb4\xbc\xfc\xbc\xb4\xba\xf4",      MENU_1_CALL        },
+#ifdef ENABLE_ALARM
+    {"AlarmT",      MENU_AL_MOD        },
+#endif
+#ifdef ENABLE_DTMF_CALLING
+    {"ANI ID",      MENU_ANI_ID        },
+#endif
+    {"DTMF\xc9\xcf\xcf\xdf\xc2\xeb",      MENU_UPCODE        },
+    {"DTMF\xcf\xc2\xcf\xdf\xc2\xeb",      MENU_DWCODE        },
+    {"DTMF\xb7\xa2\xcb\xcd",      MENU_PTT_ID        },
+    {"DTMF\xb2\xe0\xd2\xf4",        MENU_D_ST          },
+#ifdef ENABLE_DTMF_CALLING
+    {"D Resp",      MENU_D_RSP         },
+    {"D Hold",      MENU_D_HOLD        },
+#endif
+    {"DTMF\xd4\xa4\xd4\xd8\xb2\xa5",      MENU_D_PRE         },
+#ifdef ENABLE_DTMF_CALLING
+    {"D Decd",      MENU_D_DCD         },
+    {"D List",      MENU_D_LIST        },
+#endif
+    {"DTMF\xcf\xd4\xca\xbe",      MENU_D_LIVE_DEC    },
+#ifndef ENABLE_FEAT_F4HWN
+    #ifdef ENABLE_AM_FIX
+        {"AM Fix",      MENU_AM_FIX        },
+    #endif
+#endif
+    {"\xc9\xf9\xbf\xd8",         MENU_VOX           },
+#ifdef ENABLE_FEAT_F4HWN
+    {"\xb0\xe6\xb1\xbe\xd0\xc5\xcf\xa2",      MENU_VOL           },
+#else
+    {"BatVol",      MENU_VOL           },
+#endif
+    {"\xca\xd5\xb7\xa2\xc4\xa3\xca\xbd",      MENU_TDR           },
+    {"\xbe\xb2\xd4\xeb\xb5\xc8\xbc\xb6",         MENU_SQL           },
+#ifdef ENABLE_FEAT_F4HWN
+    {"\xb7\xa2\xc9\xe4\xb9\xa6\xc2\xca",      MENU_SET_PWR       },
+    {"\xb7\xa2\xc9\xe4\xb0\xb4\xbc\xfc\xc4\xa3\xca\xbd",      MENU_SET_PTT       },
+    {"\xb7\xa2\xc9\xe4\xb3\xac\xca\xb1\xcc\xe1\xca\xbe",      MENU_SET_TOT       },
+    {"\xcd\xa8\xc1\xaa\xbd\xe1\xca\xf8\xcc\xe1\xca\xbe",      MENU_SET_EOT       },
+    {"\xc6\xc1\xc4\xbb\xb6\xd4\xb1\xc8\xb6\xc8",      MENU_SET_CTR       },
+    {"\xc6\xc1\xc4\xbb\xb7\xb4\xcf\xd4",      MENU_SET_INV       },
+    {"\xbc\xfc\xc5\xcc\xcb\xf8\xb7\xbd\xca\xbd",      MENU_SET_LCK       },
+    {"\xb3\xa1\xc7\xbf\xb1\xed\xb7\xe7\xb8\xf1",      MENU_SET_MET       },
+    {"\xc6\xc1\xc4\xbb\xcf\xd4\xca\xbe\xb7\xe7\xb8\xf1",      MENU_SET_GUI       },
+    {"\xbc\xc6\xca\xb1\xc6\xf7",      MENU_SET_TMR       },
+#ifdef ENABLE_FEAT_F4HWN_SLEEP
+    {"\xd0\xdd\xc3\xdf\xc4\xa3\xca\xbd",       MENU_SET_OFF      },
+#endif
+#ifdef ENABLE_FEAT_F4HWN_NARROWER
+    {"\xd5\xad\xb4\xf8\xc9\xe8\xd6\xc3",      MENU_SET_NFM       },
+#endif
+#ifdef ENABLE_FEAT_F4HWN_VOL
+    {"SetVol",      MENU_SET_VOL       },
+#endif
+#ifdef ENABLE_FEAT_F4HWN_RESCUE_OPS
+    {"\xbe\xc8\xd4\xae\xc4\xa3\xca\xbd\xb0\xb4\xbc\xfc",      MENU_SET_KEY       },
+#endif
+#ifdef ENABLE_NOAA
+    {"SetNWR",      MENU_NOAA_S    },
+#endif
+#endif
+    {"\xc6\xb5\xb6\xce\xbd\xe2\xcb\xf8",      MENU_F_LOCK        },
+#ifndef ENABLE_FEAT_F4HWN
+    {"Tx 200",      MENU_200TX         },
+    {"Tx 350",      MENU_350TX         },
+    {"Tx 500",      MENU_500TX         },
+#endif
+    {"350 En",      MENU_350EN         },
+#ifndef ENABLE_FEAT_F4HWN
+    {"ScraEn",      MENU_SCREN         },
+#endif
+#ifdef ENABLE_F_CAL_MENU
+    {"FrCali",      MENU_F_CALI        },
+#endif
+    {"\xb5\xe7\xb3\xd8\xb5\xf7\xd1\xb9",      MENU_BATCAL        },
+    {"\xb5\xe7\xb3\xd8\xb4\xf3\xd0\xa1",      MENU_BATTYP        },
+    {"\xb2\xce\xca\xfd\xb8\xb4\xce\xbb",       MENU_RESET         },
+    {"",                              0xff               }
+};
+#else
 const t_menu_item MenuList[] =
 {
 //   text,          menu ID
@@ -185,9 +327,23 @@ const t_menu_item MenuList[] =
 
     {"",                              0xff               }  // end of list - DO NOT delete or move this this
 };
+#endif
 
 const uint8_t FIRST_HIDDEN_MENU_ITEM = MENU_F_LOCK;
 
+#ifdef ENABLE_CHINESE
+const char gSubMenu_TXP[][9] =
+{
+    "\xd7\xd4\xc9\xe8\xb9\xa6\xc2\xca",
+    "\xb5\xcd\xb9\xa6\xc2\xca 1",
+    "\xb5\xcd\xb9\xa6\xc2\xca 2",
+    "\xb5\xcd\xb9\xa6\xc2\xca 3",
+    "\xb5\xcd\xb9\xa6\xc2\xca 4",
+    "\xb5\xcd\xb9\xa6\xc2\xca 5",
+    "\xd6\xd0\xb9\xa6\xc2\xca",
+    "\xb8\xdf\xb9\xa6\xc2\xca"
+};
+#else
 const char gSubMenu_TXP[][6] =
 {
     "USER",
@@ -199,31 +355,66 @@ const char gSubMenu_TXP[][6] =
     "MID",
     "HIGH"
 };
+#endif
 
+#ifdef ENABLE_CHINESE
+const char gSubMenu_SFT_D[][15] =
+{
+    "\xb7\xa2\xcb\xcd=\xbd\xd3\xca\xd5",
+    "\xb7\xa2\xcb\xcd=\xbd\xd3\xca\xd5+\xc6\xab\xd2\xc6",
+    "\xb7\xa2\xcb\xcd=\xbd\xd3\xca\xd5-\xc6\xab\xd2\xc6"
+};
+#else
 const char gSubMenu_SFT_D[][4] =
 {
     "OFF",
     "+",
     "-"
 };
+#endif
 
+#ifdef ENABLE_CHINESE
+const char gSubMenu_W_N[][5] =
+{
+    "\xbf\xed\xb4\xf8",
+    "\xd5\xad\xb4\xf8"
+};
+#else
 const char gSubMenu_W_N[][7] =
 {
     "WIDE",
     "NARROW"
 };
+#endif
 
+#ifdef ENABLE_CHINESE
+const char gSubMenu_OFF_ON[][5] =
+{
+    "\xb9\xd8\xb1\xd5",
+    "\xbf\xaa\xc6\xf4"
+};
+#else
 const char gSubMenu_OFF_ON[][4] =
 {
     "OFF",
     "ON"
 };
+#endif
 
 const char gSubMenu_NA[4] =
 {
     "N/A"
 };
 
+#ifdef ENABLE_CHINESE
+const char* const gSubMenu_RXMode[] =
+{
+    "\xd6\xf7\xd0\xc5\xb5\xc0\xbd\xd3\xca\xd5\xb7\xa2\xc9\xe4",
+    "\xcb\xab\xd0\xc5\xb5\xc0\xbd\xd3\xca\xd5\xb7\xa2\xc9\xe4",
+    "\xd6\xf7\xd0\xc5\xb5\xc0\xb7\xa2\xb8\xb1\xd0\xc5\xb5\xc0\xca\xd5",
+    "\xd6\xf7\xd0\xc5\xb5\xc0\xb7\xa2\xcb\xab\xd0\xc5\xb5\xc0\xca\xd5"
+};
+#else
 const char* const gSubMenu_RXMode[] =
 {
     "MAIN\nONLY",       // TX and RX on main only
@@ -231,6 +422,7 @@ const char* const gSubMenu_RXMode[] =
     "CROSS\nBAND",      // TX on main, RX on secondary
     "MAIN TX\nDUAL RX"  // always TX on main, but RX on both
 };
+#endif
 
 #ifdef ENABLE_VOICE
     const char gSubMenu_VOICE[][4] =
@@ -241,6 +433,15 @@ const char* const gSubMenu_RXMode[] =
     };
 #endif
 
+#ifdef ENABLE_CHINESE
+const char* const gSubMenu_MDF[] =
+{
+    "\xc6\xb5\xc2\xca",
+    "\xd0\xc5\xb5\xc0\xba\xc5",
+    "\xc3\xfb\xb3\xc6",
+    "\xc3\xfb\xb3\xc6+\xc6\xb5\xc2\xca"
+};
+#else
 const char* const gSubMenu_MDF[] =
 {
     "FREQ",
@@ -248,6 +449,7 @@ const char* const gSubMenu_MDF[] =
     "NAME",
     "NAME\n+\nFREQ"
 };
+#endif
 
 #ifdef ENABLE_ALARM
     const char gSubMenu_AL_MOD[][5] =
@@ -267,6 +469,16 @@ const char gSubMenu_D_RSP[][11] =
 };
 #endif
 
+#ifdef ENABLE_CHINESE
+const char* const gSubMenu_PTT_ID[] =
+{
+    "\xb2\xbb\xb7\xa2\xcb\xcd",
+    "\xc9\xcf\xcf\xdf\xc2\xeb",
+    "\xcf\xc2\xcf\xdf\xc2\xeb",
+    "\xc9\xcf\xcf\xdf\xbc\xd3\xcf\xc2\xcf\xdf\xc2\xeb",
+    "Quindar\xc2\xeb"
+};
+#else
 const char* const gSubMenu_PTT_ID[] =
 {
     "OFF",
@@ -275,7 +487,28 @@ const char* const gSubMenu_PTT_ID[] =
     "UP+DOWN\nCODE",
     "APOLLO\nQUINDAR"
 };
+#endif
 
+#ifdef ENABLE_CHINESE
+#ifdef ENABLE_FEAT_F4HWN
+const char gSubMenu_PONMSG[][13] =
+{
+    "\xc8\xab\xb2\xbf",
+    "\xd6\xbb\xd3\xd0\xbf\xaa\xbb\xfa\xd2\xf4\xc6\xb5",
+    "\xd0\xc5\xcf\xa2",
+    "\xb5\xe7\xd1\xb9",
+    "\xbf\xd5\xb0\xd7"
+};
+#else
+const char gSubMenu_PONMSG[][13] =
+{
+    "FULL",
+    "\xd0\xc5\xcf\xa2",
+    "\xb5\xe7\xd1\xb9",
+    "\xbf\xd5\xb0\xd7"
+};
+#endif
+#else
 const char gSubMenu_PONMSG[][8] =
 {
 #ifdef ENABLE_FEAT_F4HWN
@@ -288,19 +521,37 @@ const char gSubMenu_PONMSG[][8] =
     "VOLTAGE",
     "NONE"
 };
+#endif
 
+#ifdef ENABLE_CHINESE
+const char gSubMenu_ROGER[][10] =
+{
+    "\xb9\xd8\xb1\xd5",
+    "ROGER\xce\xb2\xd2\xf4",
+    "MDC\xce\xb2\xd2\xf4"
+};
+#else
 const char gSubMenu_ROGER[][6] =
 {
     "OFF",
     "ROGER",
     "MDC"
 };
+#endif
 
+#ifdef ENABLE_CHINESE
+const char gSubMenu_RESET[][11] =
+{
+    "\xb3\xfd\xd0\xc5\xb5\xc0\xb2\xce\xca\xfd",
+    "\xc8\xab\xb2\xbf\xb2\xce\xca\xfd"
+};
+#else
 const char gSubMenu_RESET[][4] =
 {
     "VFO",
     "ALL"
 };
+#endif
 
 const char * const gSubMenu_F_LOCK[] =
 {
@@ -323,6 +574,15 @@ const char * const gSubMenu_F_LOCK[] =
     "UNLOCK\nALL",
 };
 
+#ifdef ENABLE_CHINESE
+const char gSubMenu_RX_TX[][11] =
+{
+    "\xb9\xd8\xb1\xd5",
+    "\xb7\xa2\xcb\xcd\xca\xb1",
+    "\xbd\xd3\xca\xd5\xca\xb1",
+    "\xb7\xa2\xcb\xcd\xbd\xd3\xca\xd5\xca\xb1"
+};
+#else
 const char gSubMenu_RX_TX[][6] =
 {
     "OFF",
@@ -330,20 +590,39 @@ const char gSubMenu_RX_TX[][6] =
     "RX",
     "TX/RX"
 };
+#endif
 
+#ifdef ENABLE_CHINESE
+const char gSubMenu_BAT_TXT[][9] =
+{
+    "\xb2\xbb\xcf\xd4\xca\xbe",
+    "\xb5\xe7\xd1\xb9\xca\xfd\xd6\xb5",
+    "\xb0\xd9\xb7\xd6\xb1\xc8"
+};
+#else
 const char gSubMenu_BAT_TXT[][8] =
 {
     "NONE",
     "VOLTAGE",
     "PERCENT"
 };
+#endif
 
+#ifdef ENABLE_CHINESE
+const char gSubMenu_BATTYP[][12] =
+{
+    "1600mAh K5",
+    "2200mAh K5",
+    "3500mAh K5"
+};
+#else
 const char gSubMenu_BATTYP[][9] =
 {
     "1600mAh",
     "2200mAh",
     "3500mAh"
 };
+#endif
 
 #ifndef ENABLE_FEAT_F4HWN
 const char gSubMenu_SCRAMBLER[][7] =
@@ -363,6 +642,63 @@ const char gSubMenu_SCRAMBLER[][7] =
 #endif
 
 #ifdef ENABLE_FEAT_F4HWN
+#ifdef ENABLE_CHINESE
+    const char gSubMenu_SET_PWR[][6] =
+    {
+        "< 20m",
+        "125m",
+        "250m",
+        "500m",
+        "1",
+        "2",
+        "5"
+    };
+
+    const char gSubMenu_SET_PTT[][13] =
+    {
+        "\xbe\xad\xb5\xe4\xc4\xa3\xca\xbd",
+        "\xb5\xa5\xbc\xfc\xb1\xa3\xb3\xd6\xc4\xa3\xca\xbd"
+    };
+
+    const char gSubMenu_SET_TOT[][9] =
+    {
+        "\xb9\xd8\xb1\xd5",
+        "\xd2\xf4\xc6\xb5\xcc\xe1\xca\xbe",
+        "\xc9\xc1\xb5\xc6\xcc\xe1\xca\xbe",
+        "\xc8\xab\xb2\xbf"
+    };
+
+    const char gSubMenu_SET_LCK[][13] =
+    {
+        "\xc8\xab\xb2\xbf\xb0\xb4\xbc\xfc",
+        "\xc8\xab\xb2\xbf\xb0\xb4\xbc\xfc+PTT"
+    };
+
+    const char gSubMenu_SET_MET[][9] =
+    {
+        "\xbd\xf4\xb4\xd5\xb7\xe7\xb8\xf1",
+        "\xbe\xad\xb5\xe4\xb7\xe7\xb8\xf1"
+    };
+
+    #ifdef ENABLE_FEAT_F4HWN_NARROWER
+        const char gSubMenu_SET_NFM[][9] =
+        {
+            "NARROW",
+            "NARROWER"
+        };
+    #endif
+
+    #ifdef ENABLE_FEAT_F4HWN_RESCUE_OPS
+        const char gSubMenu_SET_KEY[][9] =
+        {
+            "KEY_MENU",
+            "KEY_UP",
+            "KEY_DOWN",
+            "KEY_EXIT",
+            "KEY_STAR"
+        };
+    #endif
+#else
     const char gSubMenu_SET_PWR[][6] =
     {
         "< 20m",
@@ -419,7 +755,56 @@ const char gSubMenu_SCRAMBLER[][7] =
         };
     #endif
 #endif
+#endif
 
+#ifdef ENABLE_CHINESE
+const t_sidefunction gSubMenu_SIDEFUNCTIONS[] =
+{
+    {"\xb9\xd8\xb1\xd5",            ACTION_OPT_NONE},
+#ifdef ENABLE_FLASHLIGHT
+    {"\xca\xd6\xb5\xe7",    ACTION_OPT_FLASHLIGHT},
+#endif
+    {"\xc7\xd0\xbb\xbb\xb7\xa2\xc9\xe4\xb9\xa6\xc2\xca",           ACTION_OPT_POWER},
+    {"\xbc\xe0\xcc\xfd",         ACTION_OPT_MONITOR},
+    {"\xc9\xa8\xc3\xe8",            ACTION_OPT_SCAN},
+#ifdef ENABLE_VOX
+    {"\xc9\xf9\xbf\xd8\xb7\xa2\xc9\xe4",             ACTION_OPT_VOX},
+#endif
+#ifdef ENABLE_ALARM
+    {"ALARM",           ACTION_OPT_ALARM},
+#endif
+#ifdef ENABLE_FMRADIO
+    {"FM\xca\xd5\xd2\xf4\xbb\xfa",        ACTION_OPT_FM},
+#endif
+#ifdef ENABLE_TX1750
+    {"1750Hz",          ACTION_OPT_1750},
+#endif
+#ifdef ENABLE_REGA
+    {"REGA\nALARM",     ACTION_OPT_REGA_ALARM},
+    {"REGA\nTEST",      ACTION_OPT_REGA_TEST},
+#endif
+    {"\xcb\xf8\xb6\xa8\xb0\xb4\xbc\xfc",    ACTION_OPT_KEYLOCK},
+    {"\xc7\xd0\xbb\xbb\xd0\xc5\xb5\xc0""A/B",    ACTION_OPT_A_B},
+    {"\xc7\xd0\xbb\xbb\xd0\xc5\xb5\xc0\xc4\xa3\xca\xbd",        ACTION_OPT_VFO_MR},
+    {"\xc7\xd0\xbb\xbb\xb5\xf7\xd6\xc6\xc4\xa3\xca\xbd",            ACTION_OPT_SWITCH_DEMODUL},
+#ifdef ENABLE_BLMIN_TMP_OFF
+    {"BLMIN\nTMP OFF",  ACTION_OPT_BLMIN_TMP_OFF},
+#endif
+#ifdef ENABLE_FEAT_F4HWN
+    {"\xc7\xd0\xbb\xbb\xbd\xd3\xca\xd5\xc4\xa3\xca\xbd",         ACTION_OPT_RXMODE},
+    {"\xb6\xc0\xd5\xbc\xd6\xf7\xd0\xc5\xb5\xc0\xca\xd5\xb7\xa2",       ACTION_OPT_MAINONLY},
+    {"\xb7\xa2\xc9\xe4\xbc\xfc\xc4\xa3\xca\xbd",             ACTION_OPT_PTT},
+    {"\xc7\xd0\xbb\xbb\xbf\xed/\xd5\xad\xb4\xf8",    ACTION_OPT_WN},
+    #if !defined(ENABLE_SPECTRUM) || !defined(ENABLE_FMRADIO)
+    {"\xbe\xb2\xd2\xf4",            ACTION_OPT_MUTE},
+    #endif
+    #ifdef ENABLE_FEAT_F4HWN_RESCUE_OPS
+        {"\xd2\xbb\xbc\xfc\xc9\xe8\xd6\xc3\xb8\xdf\xb9\xa6\xc2\xca",    ACTION_OPT_POWER_HIGH},
+        {"\xd2\xbb\xbc\xfc\xd6\xb1\xc6\xb5",  ACTION_OPT_REMOVE_OFFSET},
+    #endif
+#endif
+};
+#else
 const t_sidefunction gSubMenu_SIDEFUNCTIONS[] =
 {
     {"NONE",            ACTION_OPT_NONE},
@@ -450,7 +835,7 @@ const t_sidefunction gSubMenu_SIDEFUNCTIONS[] =
     {"VFO\nMEM",        ACTION_OPT_VFO_MR},
     {"MODE",            ACTION_OPT_SWITCH_DEMODUL},
 #ifdef ENABLE_BLMIN_TMP_OFF
-    {"BLMIN\nTMP OFF",  ACTION_OPT_BLMIN_TMP_OFF},      //BackLight Minimum Temporay OFF
+    {"BLMIN\nTMP OFF",  ACTION_OPT_BLMIN_TMP_OFF},
 #endif
 #ifdef ENABLE_FEAT_F4HWN
     {"RX MODE",         ACTION_OPT_RXMODE},
@@ -466,6 +851,7 @@ const t_sidefunction gSubMenu_SIDEFUNCTIONS[] =
     #endif
 #endif
 };
+#endif
 
 const uint8_t gSubMenu_SIDEFUNCTIONS_size = ARRAY_SIZE(gSubMenu_SIDEFUNCTIONS);
 
