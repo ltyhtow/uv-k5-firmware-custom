@@ -881,8 +881,7 @@ int     edit_index;
 
 void UI_DisplayMenu(void)
 {
-    const unsigned int menu_list_width = 6; // max no. of characters on the menu list (left side)
-    const unsigned int menu_item_x1    = (8 * menu_list_width) + 2;
+    const unsigned int menu_item_x1    = 0;
     const unsigned int menu_item_x2    = LCD_WIDTH - 1;
     unsigned int       i;
     char               String[64];  // bigger cuz we can now do multi-line in one string (use '\n' char)
@@ -894,72 +893,55 @@ void UI_DisplayMenu(void)
     UI_DisplayClear();
 
 #ifdef ENABLE_FEAT_F4HWN
-    UI_DrawLineBuffer(gFrameBuffer, 48, 0, 48, 55, 1); // Be ware, status zone = 8 lines, the rest = 56 ->total 64
+    //UI_DrawLineBuffer(gFrameBuffer, 48, 0, 48, 55, 1);
     //UI_DrawLineDottedBuffer(gFrameBuffer, 0, 46, 50, 46, 1);
 
-    for (uint8_t i = 0; i < 48; i += 2)
+    /*for (uint8_t i = 0; i < 48; i += 2)
     {
         gFrameBuffer[5][i] = 0x40;
-    }
+    }*/
 #endif
 
 #ifndef ENABLE_CUSTOM_MENU_LAYOUT
-        // original menu layout
-    for (i = 0; i < 3; i++)
-        if (gMenuCursor > 0 || i > 0)
-            if ((gMenuListCount - 1) != gMenuCursor || i != 2)
-                UI_PrintString(MenuList[gMenuCursor + i - 1].name, 0, 0, i * 2, 8);
-
-    // invert the current menu list item pixels
-    for (i = 0; i < (8 * menu_list_width); i++)
     {
-        gFrameBuffer[2][i] ^= 0xFF;
-        gFrameBuffer[3][i] ^= 0xFF;
+        // original menu layout
+        const unsigned int menu_list_width = 6; // max no. of characters on the menu list (left side)
+        for (i = 0; i < 3; i++)
+            if (gMenuCursor > 0 || i > 0)
+                if ((gMenuListCount - 1) != gMenuCursor || i != 2)
+                    UI_PrintString(MenuList[gMenuCursor + i - 1].name, 0, 0, i * 2, 8);
+
+        // invert the current menu list item pixels
+        for (i = 0; i < (8 * menu_list_width); i++)
+        {
+            gFrameBuffer[2][i] ^= 0xFF;
+            gFrameBuffer[3][i] ^= 0xFF;
+        }
+
+        // draw vertical separating dotted line
+        for (i = 0; i < 7; i++)
+            gFrameBuffer[i][(8 * menu_list_width) + 1] = 0xAA;
+
+        // draw the little sub-menu triangle marker
+        if (gIsInSubMenu)
+            memcpy(gFrameBuffer[0] + (8 * menu_list_width) + 1, BITMAP_CurrentIndicator, sizeof(BITMAP_CurrentIndicator));
+
+        // draw the menu index number/count
+        sprintf(String, "%2u.%u", 1 + gMenuCursor, gMenuListCount);
+
+        UI_PrintStringSmallNormal(String, 2, 0, 6);
     }
-
-    // draw vertical separating dotted line
-    for (i = 0; i < 7; i++)
-        gFrameBuffer[i][(8 * menu_list_width) + 1] = 0xAA;
-
-    // draw the little sub-menu triangle marker
-    if (gIsInSubMenu)
-        memcpy(gFrameBuffer[0] + (8 * menu_list_width) + 1, BITMAP_CurrentIndicator, sizeof(BITMAP_CurrentIndicator));
-
-    // draw the menu index number/count
-    sprintf(String, "%2u.%u", 1 + gMenuCursor, gMenuListCount);
-
-    UI_PrintStringSmallNormal(String, 2, 0, 6);
-
 #else
     {   // new menu layout .. experimental & unfinished
         const int menu_index = gMenuCursor;  // current selected menu item
         i = 1;
 
         if (!gIsInSubMenu) {
-            while (i < 2)
-            {   // leading menu items - small text
-                const int k = menu_index + i - 2;
-                if (k < 0)
-                    UI_PrintStringSmallNormal(MenuList[gMenuListCount + k].name, 0, 0, i);  // wrap-a-round
-                else if (k >= 0 && k < (int)gMenuListCount)
-                    UI_PrintStringSmallNormal(MenuList[k].name, 0, 0, i);
-                i++;
-            }
 
             // current menu item - keep big n fat
             if (menu_index >= 0 && menu_index < (int)gMenuListCount)
-                UI_PrintString(MenuList[menu_index].name, 0, 0, 2, 8);
+                UI_PrintString(MenuList[menu_index].name, 0, 127, 0, 8);
             i++;
-
-            while (i < 4)
-            {   // trailing menu item - small text
-                const int k = menu_index + i - 2;
-                if (k >= 0 && k < (int)gMenuListCount)
-                    UI_PrintStringSmallNormal(MenuList[k].name, 0, 0, 1 + i);
-                else if (k >= (int)gMenuListCount)
-                    UI_PrintStringSmallNormal(MenuList[gMenuListCount - k].name, 0, 0, 1 + i);  // wrap-a-round
-                i++;
-            }
 
             // draw the menu index number/count
 #ifndef ENABLE_FEAT_F4HWN
@@ -969,14 +951,13 @@ void UI_DisplayMenu(void)
         }
         else if (menu_index >= 0 && menu_index < (int)gMenuListCount)
         {   // current menu item
-//          strcat(String, ":");
-            UI_PrintString(MenuList[menu_index].name, 0, 0, 0, 8);
-//          UI_PrintStringSmallNormal(String, 0, 0, 0);
+            sprintf(String, "<%s>", MenuList[menu_index].name);
+            UI_PrintString(String, 0, 127, 0, 8);
         }
 
 #ifdef ENABLE_FEAT_F4HWN
         sprintf(String, "%02u/%u", 1 + gMenuCursor, gMenuListCount);
-        UI_PrintStringSmallNormal(String, 6, 0, 6);
+        UI_PrintStringSmallNormal(String, 0, 0, 6);
 #endif
     }
 #endif
